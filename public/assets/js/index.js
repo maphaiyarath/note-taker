@@ -1,10 +1,20 @@
-const fs = require("fs");
+var express = require("express");
 
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
+
+// create an Express server
+var app = express();
+
+// set up an initial port
+var PORT = process.env.PORT || 8080;
+
+// set up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true}));
+app.use(express.json());
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
@@ -151,6 +161,16 @@ $noteText.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
+
+// ROUTES to point the server to
+// tells the server how to respond when users visit or request data from various URLs
+require('./routes/apiRoutes')(app);
+require('./routes/htmlRoutes')(app);
+
+// start the Express server
+app.listen(PORT, function() {
+  console.log('App listening on PORT: ' + PORT);
+})
 
 /*
 The following HTML routes should be created:

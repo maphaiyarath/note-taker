@@ -51,7 +51,11 @@ const renderActiveNote = () => {
 
 // Get the note data from the inputs, save it to the db and update the view
 const handleNoteSave = function () {
+  let noteID = noteTitle.val().replace(/\s+/g, "").toLowerCase();
+  // encodeURI($noteTitle.val());
+
   const newNote = {
+    id: noteID,
     title: $noteTitle.val(),
     text: $noteText.val(),
   };

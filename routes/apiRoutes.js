@@ -1,5 +1,6 @@
 // load data
 let data = require('../db/db.json');
+var fs = require('fs');
 var path = require('path');
 
 module.exports = function(app) {
@@ -13,6 +14,10 @@ module.exports = function(app) {
 		// and returns the new note to the client
 	app.post('/api/notes', function(req, res) {
 		data.push(req.body);
+		var updatedData = JSON.stringify(data);
+		console.log(path.join(__dirname, "view.html"));
+		fs.writeFile('./db/db.json', updatedData, 'utf8',
+			err => err ? console.log(err) : console.log('Updated db.json'));
 		res.json(req.body);
 	});
 
@@ -28,9 +33,3 @@ module.exports = function(app) {
 		res.json({ ok : true });
 	})
 };
-
-/*  tableData.length = 0;
-	waitListData.length = 0;
-	res.sendFile(path.join(__dirname, "view.html"));
-	
-	*/

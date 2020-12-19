@@ -1,8 +1,8 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/maphaiyarath/note-taker)
 # Express: Note Taker
 
-![Note Taker App](./TODO)
-You can watch the walkthrough video [here](./TODO).
+![Note Taker App](./note-taker.png)
+You can see the deployed app [here](https://maphaiyarath-note-taker.herokuapp.com/).
 
 ## Table of Contents
 * [Description](#description)
@@ -22,14 +22,13 @@ npm install
 ```
 
 ## Usage
-To prompt inquirer, the application will be invoked by running:
+The application will be invoked by running:
 ```bash
 node index.js
 ```
 
 ## Credits
 * [Express.js](http://expressjs.com/)
-* [Inquirer.js](https://www.npmjs.com/package/inquirer)
 
 ## License
 This project is licensed under the MIT license.

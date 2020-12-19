@@ -6,18 +6,23 @@ var path = require('path');
 module.exports = function(app) {
 	// GET /api/notes reads the db.json file and returns all the saved notes as json
 	app.get('/api/notes', function(req, res) {
-		res.json(data);
+		let notes = JSON.parse(fs.readFileSync(path.join(__dirname, '../db/db.json')));
+		res.json(notes);
 	});
 
-	// POST /api/notes receives a new note to save on the req body,
-		// adds it to the db.json file
-		// and returns the new note to the client
+	/*
+	POST /api/notes receives a new note to save on the req body,
+	  adds it to the db.json file
+	  and returns the new note to the client
+	*/
 	app.post('/api/notes', function(req, res) {
-		data.push(req.body);
-		var updatedData = JSON.stringify(data);
-		console.log(path.join(__dirname, "view.html"));
-		fs.writeFile('./db/db.json', updatedData, 'utf8',
-			err => err ? console.log(err) : console.log('Updated db.json'));
+		let notes = JSON.parse(fs.readFileSync(path.join(__dirname, '../db/db.json')));
+
+		notes.push(req.body);
+
+		var updatedNotes = JSON.stringify(notes);
+		fs.writeFileSync('./db/db.json', updatedNotes);
+
 		res.json(req.body);
 	});
 
@@ -27,9 +32,18 @@ module.exports = function(app) {
       In order to delete a note, you'll need to read all notes from the db.json file,
       remove the note with the given id property, and then rewrite the notes to the db.json file.
 	*/
-	app.post('/api/notes/:id', function(req, res) {
+	app.delete('/api/notes/:id', function(req, res) {
 		// empty out note with that id
-		data.id = '';
-		res.json({ ok : true });
+		var noteID = req.params.id;
+		let notes = JSON.parse(fs.readFileSync(path.join(__dirname, '../db/db.json')));
+		let index = notes.findIndex( element => {
+			if (element.id === noteID) return true;
+		});
+		notes.splice(index, 1);
+
+		var updatedNotes = JSON.stringify(notes);
+		fs.writeFileSync('./db/db.json', updatedNotes);
+		
+		res.send('Deleting note');
 	})
 };

@@ -24,8 +24,9 @@ npm install
 ## Usage
 The application will be invoked by running:
 ```bash
-node index.js
+node server.js
 ```
+You can open your browser and view the app at [localhost:8080](localhost:8080).
 
 ## Credits
 * [Express.js](http://expressjs.com/)

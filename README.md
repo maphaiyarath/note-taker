@@ -1,7 +1,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/maphaiyarath/note-taker)
 # Express: Note Taker
 
-![Note Taker App](./note-taker.png)
+![Note Taker App](./og-note-taker.png)
 You can see the deployed app [here](https://maphaiyarath-note-taker.herokuapp.com/).
 
 ## Table of Contents

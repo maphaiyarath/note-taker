@@ -2,6 +2,7 @@
 # Express: Note Taker
 
 ![Note Taker App](./og-note-taker.png)
+
 You can see the deployed app [here](https://maphaiyarath-note-taker.herokuapp.com/).
 
 ## Table of Contents
